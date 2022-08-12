@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button {
+    @apply px-4 py-3 rounded bg-primary text-white font-semibold font-syne text-sm hover:bg-dark-primary duration-300 focus:ring focus:ring-primary focus:ring-opacity-50 disabled:opacity-50 disabled:hover:bg-primary;
+  }
+}
+
+@layer utilities {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Syne-Bold'), local('Syne-Bold'),
+    url(/Syne-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Syne';
+  src: local('Syne-ExtraBold'), local('Syne-ExtraBold'),
+    url('Syne-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Syne';
+  src: local('Syne-Regular'), local('Syne-Regular'),
+    url('Syne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-syne {
+  font-family: 'Syne';
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
