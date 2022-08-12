@@ -27,7 +27,7 @@
 @font-face {
   font-family: 'Syne';
   src: local('Syne-ExtraBold'), local('Syne-ExtraBold'),
-    url('Syne-ExtraBold.ttf') format('truetype');
+    url(/Syne-ExtraBold.ttf) format('truetype');
   font-weight: 800;
   font-style: normal;
 }
@@ -35,7 +35,7 @@
 @font-face {
   font-family: 'Syne';
   src: local('Syne-Regular'), local('Syne-Regular'),
-    url('Syne-Regular.ttf') format('truetype');
+    url(/Syne-Regular.ttf) format('truetype');
   font-weight: 400;
   font-style: normal;
 }
