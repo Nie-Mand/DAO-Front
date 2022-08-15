@@ -84,12 +84,12 @@ export function useContract(address: string, abi: ethers.ContractInterface) {
   }
 
   useEffect(() => {
-    if (web3) {
+    if (web3 && address) {
       initContract()
     } else {
       if (!web3) setController(null)
     }
-  }, [web3, signer])
+  }, [address, web3, signer])
 
   const exec = useCallback(
     async <F>(func: (...args: any[]) => Promise<F>, ...args: any[]) => {

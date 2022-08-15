@@ -1,6 +1,7 @@
 import Home from './routes/Home'
 import Create from './routes/Create'
 import Top from './utils/Top'
+import Campaign from './routes/Campaign'
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import Loading from 'utils/Loading'
 import { useWallet } from 'eth'
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/campaigns/:address" element={<Campaign />} />
         </Routes>
       </Router>
     </div>
