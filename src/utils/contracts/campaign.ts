@@ -110,7 +110,7 @@ export const useCampaignMetadata = (address: string) => {
     setLoading(true)
     if (!contract) return
     await contract
-      .queryFilter(contract.filters.UserJoined(), 27631150)
+      .queryFilter(contract.filters.UserJoined(), 27687614)
       .then(async x => {
         if (Array.isArray(x)) {
           setLoading(false)
