@@ -27,7 +27,7 @@ export const useCampaigns = () => {
       ;(async () => {
         setLoading(true)
         await contract
-          .queryFilter(contract.filters.CampainCreated(), 27629281)
+          .queryFilter(contract.filters.CampainCreated(), 27687584)
           .then(x => {
             if (Array.isArray(x)) {
               setLoading(false)

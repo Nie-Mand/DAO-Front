@@ -21,8 +21,9 @@ const usePrsetigeTokenContract = (address: string | null) => {
   const { contract } = useContract(address || '', tokenArtifacts.abi)
   const [maxTokensToBuy] = useReader(contract?.maximumTokenToBuy)
   const [tokenPrice] = useReader(contract?.tokenPrice)
+  const [balanceOf] = useReader(contract?.balanceOf)
 
-  const getData = useCallback(async () => {
+  const getTokenData = useCallback(async () => {
     console.log('address', address)
 
     if (!address) return
@@ -42,7 +43,11 @@ const usePrsetigeTokenContract = (address: string | null) => {
     }
   }, [contract])
 
-  return getData
+  function getBalanceOf(address: string) {
+    return balanceOf(address)
+  }
+
+  return { getTokenData, getBalanceOf }
 }
 
 export const useCampaignMetadata = (address: string) => {
@@ -60,7 +65,7 @@ export const useCampaignMetadata = (address: string) => {
     []
   )
 
-  const getTokenData = usePrsetigeTokenContract(tokenAddress)
+  const { getTokenData, getBalanceOf } = usePrsetigeTokenContract(tokenAddress)
 
   async function load() {
     setLoading(true)
@@ -105,16 +110,23 @@ export const useCampaignMetadata = (address: string) => {
     setLoading(true)
     if (!contract) return
     await contract
-      .queryFilter(contract.filters.UserJoined(), 27629982)
-      .then(x => {
+      .queryFilter(contract.filters.UserJoined(), 27631150)
+      .then(async x => {
         if (Array.isArray(x)) {
           setLoading(false)
 
-          console.log(
-            x.map(e => {
-              return e.args![0]
+          let arr: { address: string; total: number }[] = []
+          for (const i of x) {
+            console.log('for', i.args![0])
+            // const total = (await getBalanceOf(i.args![0])) as BN
+            // console.log('total', total)
+            arr.push({
+              address: i.args![0],
+              total: 0, // total.toNumber(),
             })
-          )
+          }
+
+          setHolders(arr)
         }
       })
   }
@@ -129,6 +141,7 @@ export const useCampaignMetadata = (address: string) => {
     data,
     buyEquity,
     tokensPrice,
+    holders,
   }
 }
 

@@ -7,9 +7,8 @@ import Input from 'utils/Input'
 export default function Campaign() {
   const { address } = useParams()
   const { symbol } = useWallet()
-  const { error, loading, data, buyEquity, tokensPrice } = useCampaignMetadata(
-    address || ''
-  )
+  const { error, loading, data, buyEquity, tokensPrice, holders } =
+    useCampaignMetadata(address || '')
 
   if (loading) return <Loading it />
 
@@ -84,6 +83,20 @@ export default function Campaign() {
               {buyEquity[1] ? 'Signing Transaction...' : 'Buy'}
             </button>
           </form>
+        </div>
+
+        <div className="grid place-content-center gap-4">
+          <div className="border p-10 grid w-[700px] gap-10">
+            {holders.map(holder => (
+              <h1
+                key={holder.address}
+                className="text-xs font-bold border-2 border-primary px-4 py-2 rounded-md text-primary bg-primary/5"
+              >
+                <span>{holder.address}</span>
+                <span>{holder.total}</span>
+              </h1>
+            ))}
+          </div>
         </div>
       </div>
     </div>
